@@ -21,7 +21,6 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
     } catch(e){
       //alert the user here that the request failed 
       alert("request failed")
-
     }
   }
 
@@ -41,7 +40,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                 </div>
               </div>
               <div className='pt-8'>
-                {type === "signup" ? <LabelledInput label="Name" placeholder='user ' onChange={(e)=>{
+                {type === "signup" ? <LabelledInput label="Name" placeholder='user' onChange={(e)=>{
                   setpostInputs(c => ({
                     ...postInputs,
                     name: e.target.value
@@ -52,17 +51,17 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                 <LabelledInput label="Username" placeholder='user@gmail.com' onChange={(e)=>{
                   setpostInputs(c => ({
                     ...postInputs,
-                    name: e.target.value
+                    username: e.target.value
                   }))
                 }} />
 
               <LabelledInput label="Password" type={"password"} placeholder='12345678' onChange={(e)=>{
                   setpostInputs(c => ({
                     ...postInputs,
-                    name: e.target.value
+                    password: e.target.value
                   }))
                 }} />
-                <button type="button" className="text-white w-full bg-gray-800 hover:bg-gray-900 
+                <button onClick={sendRequest} type="button" className="text-white w-full bg-gray-800 hover:bg-gray-900 
                 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium 
                  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800  dark:hover:bg-gray-700
                 dark:focus:ring-gray-700 dark:border-gray-700">{type ==="signup" ? "sign up" : "sign in"}</button>
@@ -90,10 +89,9 @@ function LabelledInput({ label, placeholder, onChange ,type }: LabelledInputType
         <input
           onChange={onChange}
           type={type || "text"}
-          id="first_name"
           className="bg-gray-50 border border-gray-300 text-gray-900
              text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
-             dark:placeholder-gray-400 dark:text-white 
+             dark:placeholder-gray-400 dark:text-black 
             dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={placeholder}
           required
