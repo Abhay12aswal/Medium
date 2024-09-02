@@ -104,7 +104,7 @@ blogRouter.get('/bulk', async (c) => {
     return c.json({
         blogs
     });
-});
+});  
 
 blogRouter.get('/:id', async (c) => {
     const id = c.req.param("id");
