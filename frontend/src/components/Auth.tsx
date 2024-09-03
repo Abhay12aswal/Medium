@@ -3,6 +3,7 @@ import { useState , ChangeEvent } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from "axios";
 import { BACKEND_URL } from '../config';
+import { toast } from 'react-toastify';
 
 const Auth = ({type}: {type: "signup" | "signin"}) => {
   const Navigate = useNavigate();
@@ -20,7 +21,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
       console.log(jwt)
       Navigate("/blogs");
     } catch(e){
-      alert("request failed")
+      toast.error('request failed')
     }
   }
 
@@ -33,7 +34,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                         Create an account
                 </div>
                 <div className="text-slate-400 ">
-                    {type === "signin" ? "Don't have an account" : "Already have an account ? " }
+                    {type === "signin" ? "Don't have an account " : "Already have an account ? " }
                     <Link className='pt-2 underline' to={type === "signin" ? "/signup" : "/signin"}>
                     {type === "signin" ? "sign up " : "sign in "}
                     </Link>
@@ -61,7 +62,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                     password: e.target.value
                   }))
                 }} />
-                <button onClick={sendRequest} type="button" className="text-white w-full bg-gray-800 hover:bg-gray-900 
+                <button onClick={sendRequest} type="button" className="mt-3 text-white w-full bg-gray-800 hover:bg-gray-900 
                 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium 
                  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800  dark:hover:bg-gray-700
                 dark:focus:ring-gray-700 dark:border-gray-700">{type ==="signup" ? "sign up" : "sign in"}</button>
